@@ -5,6 +5,7 @@ import swaggerJsdoc from 'swagger-jsdoc';
 import { InMemoryDB } from './db.js';
 
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 // ESM helpers to get current directory ---
@@ -18,7 +19,16 @@ app.use(cors());
 const db = new InMemoryDB();
 
 // Serve the React Static Files ---
-app.use(express.static(path.join(__dirname, '../public')));
+const publicDir = path.join(__dirname, '../public');
+const distDir = path.join(__dirname, '../frontend/dist');
+const staticDir = fs.existsSync(publicDir) ? publicDir : (fs.existsSync(distDir) ? distDir : null);
+
+if (staticDir) {
+  app.use(express.static(staticDir));
+  console.log(`📦 Serving static files from: ${staticDir}`);
+} else {
+  console.warn('⚠️ No static assets found. Run "npm run build:ui" and "npm run sync:ui".');
+}
 
 // Swagger Configuration ---
 const swaggerOptions: swaggerJsdoc.Options = {
@@ -113,7 +123,11 @@ app.get('/wallet/:id', (req: Request, res: Response) => {
 });
 
 app.get('*any', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  if (staticDir) {
+    const indexPath = path.join(staticDir, 'index.html');
+    if (fs.existsSync(indexPath)) return res.sendFile(indexPath);
+  }
+  res.status(404).send('Static index.html not found. Build the UI first.');
 });
 
 app.listen(3000, '0.0.0.0', () => {
