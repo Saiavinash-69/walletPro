@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  wallet-pro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wallet-pro
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api-docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: always

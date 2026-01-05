@@ -1,0 +1,25 @@
+# --- Dependencies ---
+node_modules/
+frontend/node_modules/
+
+# --- Build Artifacts ---
+# This ignores the production builds of your frontend and the backend's copy
+dist/
+frontend/dist/
+public/
+
+# --- Environment & Secrets ---
+.env
+.env.*
+!.env.example
+
+# --- IDE & OS Trash ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+npm-debug.log*
+
+# --- Version Control ---
+# We keep .gitignore, but ignore git metadata if nested (not usually needed)
+.git/
