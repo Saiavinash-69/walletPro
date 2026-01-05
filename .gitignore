@@ -21,5 +21,4 @@ Thumbs.db
 npm-debug.log*
 
 # --- Version Control ---
-# We keep .gitignore, but ignore git metadata if nested (not usually needed)
 .git/
