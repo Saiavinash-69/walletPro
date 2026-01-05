@@ -9,12 +9,12 @@ import {
   PiggyBank, 
   Minus, 
   Plus, 
-  Wallet, // Changed from Box
+  Wallet,
   Copy, 
   Check 
 } from 'lucide-react';
 
-const API = ''; // Add your Backend URL here
+const API = '';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -29,7 +29,6 @@ function App() {
   const [reason, setReason] = useState('');
   const [txType, setTxType] = useState<'credit' | 'debit'>('debit');
 
-  // Set Page Title
   useEffect(() => {
     document.title = "WalletPro | Dashboard";
   }, []);
@@ -98,11 +97,9 @@ function App() {
   return (
     <div className="flex h-screen w-screen bg-[#F8FAFC] text-slate-900 overflow-hidden font-sans">
       
-      {/* --- SIDEBAR --- */}
       <aside className="w-64 lg:w-72 bg-[#020617] text-white flex flex-col shrink-0 border-r border-slate-800">
         <div className="py-10 px-6 flex items-center gap-3">
           <div className="bg-indigo-600 p-2.5 rounded-xl shadow-lg shrink-0">
-            {/* BRAND LOGO UPDATED TO WALLET */}
             <Wallet size={24} className="text-white" />
           </div>
           <span className="text-xl font-black tracking-tight truncate">Wallet<span className="text-indigo-400">Pro</span></span>
