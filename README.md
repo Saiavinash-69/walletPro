@@ -33,8 +33,8 @@ npm run start:server
 ```
 
 
-* *App runs at: `http://localhost:3000` (UI + API)*
-* *API Docs at: `http://localhost:3000/api-docs*`
+* App runs at: `http://localhost:3000` (UI + API)
+* API Docs at: `http://localhost:3000/api-docs`
 
 
 
